@@ -75,6 +75,3 @@ If you'd like to contribute to this project, feel free to fork the repository, m
 ## Contact
 If you have any questions or feedback, feel free to contact me:
 - **Email:** rishabhjain117@gmail.com
-- **GitHub:** https://github.com/Rishh2005
-- **LinkedIn:** www.linkedin.com/in/rishabh-jain2005
-
