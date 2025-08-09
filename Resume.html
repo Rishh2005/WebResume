@@ -1,590 +1,368 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rishabh Jain - Resume</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Rishabh Jain - Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Open+Sans&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+<style>
+:root {
+  --primary: #0073b1;
+  --secondary: #00bcd4;
+  --bg-light: #f7f9fc;
+  --text-dark: #222;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body {
+  font-family: 'Open Sans', sans-serif;
+  background: linear-gradient(-45deg, #f7f9fc, #e0f2fb, #c8def4, #f0f7fc);
+  background-size: 400% 400%;
+  animation: gradientMove 30s ease infinite;
+  color: var(--text-dark); margin: 0; overflow-x: hidden; min-height: 100vh;
+}
+@keyframes gradientMove {0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+.floating-shapes { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0;}
+.shape { position:absolute; background:rgba(0, 115, 177, 0.12); border-radius:50%; filter:blur(1.2px);}
+.shape1 { width:130px; height:130px; top:12%; left:9%; animation: float1 18s infinite alternate;}
+.shape2 { width:93px; height:93px; top:71%; left:67%; animation: float2 14s infinite alternate;}
+.shape3 { width:113px; height:113px; top:44%; left:82%; animation: float3 24s infinite alternate;}
+@keyframes float1 {0%{transform:translate(0,0);}100%{transform:translate(14px,-38px);}}
+@keyframes float2 {0%{transform:translate(0,0);}100%{transform:translate(-21px,32px);}}
+@keyframes float3 {0%{transform:translate(0,0);}100%{transform:translate(-17px,-24px);}}
+#particles-js { position:fixed; top:0; left:0; width:100%; height:100%; z-index:1; }
+nav {
+  position:fixed; top:0; left:0; width:100%;
+  background:rgba(255,255,255,0.95); backdrop-filter:blur(12px);
+  height:68px; min-height:68px;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:0 40px; box-shadow:0 2px 16px rgba(0,0,0,0.06); z-index:100;
+}
+nav h1 {font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.5rem; color:var(--primary); margin:0;}
+nav ul {display:flex; gap:22px; list-style:none; margin:0; padding:0;}
+nav ul li a {color:var(--text-dark); font-weight:600; text-decoration:none; transition:color .23s;}
+nav ul li a:hover, nav ul li a.active { color: var(--primary); border-bottom:2px solid var(--primary); padding-bottom:1px;}
+section { padding: 78px 0 68px; max-width:950px; margin:0 auto; position:relative; z-index:2;}
+h2.section-title { font-family:'Montserrat',sans-serif; font-size:2rem; color:var(--primary); margin-bottom:15px; text-transform:uppercase;}
+h2.section-title::after { content:''; display:block; width:60px; height:3px; background:var(--secondary); margin-top:8px; }
+.social-icons {margin-top:20px; display:flex; gap:20px; justify-content:center;}
+.social-icons a {color:var(--primary); font-size:0; text-decoration:none; transition:transform .22s;}
+.social-icons a:hover { transform:scale(1.14);}
+.timeline{position:relative;max-width:900px;margin:30px auto;}
+.timeline::after{content:'';position:absolute;width:4px;background:var(--primary);top:10px;bottom:0;left:50%;margin-left:-2px;}
+.timeline-item {padding:20px;position:relative;width:50%;}
+.timeline-item.left{left:0;}.timeline-item.right{left:50%;}
+.timeline-item::after{content:'';position:absolute;width:20px;height:20px;right:-10px;background:white;border:3px solid var(--primary);top:15px;border-radius:50%;}
+.timeline-item.right::after { left: -10px;}
+.timeline-content{padding:20px;background:white;border-radius:8px;box-shadow:0 3px 10px rgba(0,0,0,0.09);}
+.timeline-item.right .timeline-content{margin-left:22px;}
+.timeline-item.left .timeline-content{margin-right:22px;}
 
+/* Single Tech Stack Horizontal Scrollbar */
+.tech-scroll-container{
+  display:flex;
+  gap:18px;
+  padding: 15px 10px;
+  overflow-x:auto;
+  scrollbar-width:thin;
+  scrollbar-color:var(--primary) #ddd;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.tech-scroll-container::-webkit-scrollbar{height:8px;}
+.tech-scroll-container::-webkit-scrollbar-track{background:#ddd;border-radius:10px;}
+.tech-scroll-container::-webkit-scrollbar-thumb{background-color:var(--primary);border-radius:10px;}
+.tech-item{
+  flex:0 0 auto;
+  width:100px;
+  background:var(--bg-light);
+  border-radius:10px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.1);
+  text-align:center;
+  padding:15px 10px;
+  transition:transform 0.3s, box-shadow 0.3s;
+}
+.tech-item:hover{transform:scale(1.09);box-shadow:0 8px 20px rgba(0,0,0,0.15);}
+.tech-item img{width:44px;height:44px;margin-bottom:7px;}
+.tech-item div{font-weight:600;color:#333;font-size:.97rem;}
 
-    <style>
-        *{
-             margin: 0;
-             padding: 0;
-             box-sizing: border-box;
-             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        .name-3d {
-            font-size: 4rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: #ffffff;
-            text-shadow:1px 1px 0 #2c3e50, 2px 2px 0 #2c3e50, 3px 3px 0 #2c3e50, 
-                        4px 4px 0 #2c3e50, 5px 5px 0 #2c3e50, 6px 6px 0 #2c3e50, 
-                        7px 7px 0 #2c3e50, 8px 8px 0 #2c3e50;
-             position: relative;
-        }
-        .name-3d:hover {
-            color: #3498db;
-            text-shadow:1px 1px 0 #1abc9c, 2px 2px 0 #1abc9c, 3px 3px 0 #1abc9c, 
-                        4px 4px 0 #1abc9c, 5px 5px 0 #1abc9c, 6px 6px 0 #1abc9c, 
-                        7px 7px 0 #1abc9c, 8px 8px 0 #1abc9c;
-        }
-        
-        body {
-            background: #f0f2f5;
-            color: #2c3e50;
-            line-height: 1.6;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Cartoon-style background elements */
-        .background-element {
-            position: fixed;
-            opacity: 0.1;
-            z-index: -1;
-        }
-
-        .code-rain {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 3rem;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .profile-section {
-            display: flex;
-            gap: 2rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .profile-image {
-            width: 592px;
-            height: 882px;
-            background: #ddd;
-            border-radius: 20px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-            transition: transform 0.3s;
-            transform: scale(0.5);
-           ;
-
-
-        }
-
-        .profile-image:hover {
-            transform: scale(1.02);
-        }
-
-        .profile-info {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .section {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s;
-        }
-
-        .section:hover {
-            transform: translateY(-5px);
-        }
-
-        .section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(45deg, #3498db, #2ecc71);
-        }
-
-        .motivational-quote {
-            font-style: italic;
-            color: #666;
-            text-align: center;
-            margin: 2rem 0;
-            padding: 2rem;
-            background: rgba(255,255,255,0.9);
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 1rem;
-            justify-content: center;
-        }
-
-        .social-link {
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: white;
-            border-radius: 50%;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            font-size: 1.5rem;
-            color: #2c3e50;
-            text-decoration: none;
-        }
-
-        .social-link:hover {
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-        }
-
-        .social-link.linkedin:hover { color: #0077b5; }
-        .social-link.github:hover { color: #333; }
-        .social-link.instagram:hover { color: #e4405f; }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-
-        .skill-item {
-            background: #f8f9fa;
-            padding: 1.5rem;
-            border-radius: 15px;
-            transition: all 0.3s;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .skill-item::before {
-            content: '';
-            position: absolute;
-            top: -100%;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(52,152,219,0.2), rgba(46,204,113,0.2));
-            transition: all 0.3s;
-        }
-
-        .skill-item:hover::before {
-            top: 0;
-        }
-
-        .skill-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        }
-
-        /* Popup Animation */
-        @keyframes popup {
-            0% { transform: scale(0); opacity: 0; }
-            60% { transform: scale(1.1); }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        .popup {
-            animation: popup 0.5s ease-out forwards;
-        }
-
-        /* Floating Animation */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-
-        .floating {
-            animation: float 3s ease-in-out infinite;
-        }
-
-        /* Matrix-style code rain effect */
-        .code-symbol {
-            position: absolute;
-            color: #0f0;
-            font-family: monospace;
-            font-size: 14px;
-            opacity: 0;
-        }
-    </style>
+#github-projects{max-width:900px;margin:0 auto 40px;background:white;border-radius:8px;padding:25px 30px;box-shadow:0 2px 15px rgba(0,0,0,0.1);}
+#github-projects h2{font-family:'Montserrat',sans-serif;color:var(--primary);margin-bottom:20px;text-align:center;}
+.repo-list{list-style:none;padding-left:0;max-height:400px;overflow-y:auto;}
+.repo-list li+li{margin-top:20px;}
+.repo-name{font-weight:700;font-size:1.1rem;color:var(--primary);text-decoration:none;}
+.repo-description{margin-top:4px;color:#444;font-size:0.96rem;line-height:1.4;}
+.repo-meta{margin-top:6px;font-size:0.88rem;color:#666;font-style:italic;}
+form{max-width:600px;margin:auto;background:white;padding:20px;border-radius:8px;box-shadow:0 4px 15px rgba(0,0,0,0.1);}
+form input,form textarea{width:100%;padding:12px;margin-bottom:15px;border:1px solid #ccc;border-radius:6px;font-size:1rem;}
+form input:focus,form textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 6px var(--primary);}
+form button{padding:12px 25px;background:var(--primary);color:white;border:none;border-radius:6px;font-weight:600;cursor:pointer;transition:background 0.3s;font-size:1.1rem;}
+form button:hover{background:var(--secondary);}
+footer{text-align:center;padding:20px;background:rgba(255,255,255,0.92);color:#555;}
+@media (max-width: 768px) {
+  section{padding:78px 4vw;}
+  .timeline::after{left:8px;}
+  .timeline-item{width:100%;left:0!important;}
+  .timeline-item.right .timeline-content,.timeline-item.left .timeline-content{margin:0;}
+  .tech-item{width:80px;padding:10px 5px;}
+  .tech-item img{width:34px;height:34px;}
+  #github-projects{padding:18px 8px;}
+}
+</style>
 </head>
 <body>
-    <div class="code-rain"></div>
-    <div class="container">
-        <header class="header floating">
-            <h1>Rishabh Jain</h1>
-            <p>AI & ML Engineer in Making 🚀</p>
-        </header>
 
-        <div class="motivational-quote floating">
-            "Code like nobody's watching, debug like everyone is! 💻✨"
-        </div>
+<div class="floating-shapes"><div class="shape shape1"></div><div class="shape shape2"></div><div class="shape shape3"></div></div>
+<div id="particles-js"></div>
 
-        <div class="profile-section">
-            <div class="profile-image">
-                <img src="">
+<nav>
+  <h1>Rishabh Jain</h1>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills-tech">Skills & Tech Stack</a></li>
+    <li><a href="#github-projects">GitHub Repos</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-            </div>
-            <div class="profile-info">
-                <div class="section">
-                    <h2>About Me</h2>
-                    <p>Aspiring AI/ML engineer with a passion for turning coffee into code and dreams into algorithms. Currently exploring the fascinating world of artificial intelligence while occasionally debugging my life choices! 🤖</p>
-                    <div class="motivational-quote">
-                        "In the world of AI, every bug is just an opportunity to learn something new! 🌟"
-                    </div>
-                </div>
-            </div>
-        </div>
+<section id="about" data-aos="fade-up">
+  <h2 class="section-title">About Me</h2>
+  <p>
+    Innovative and results-driven AI Developer & Frontend Specialist skilled in AI/ML, NLP, and full-stack engineering.
+  </p>
+  <div class="social-icons">
+    <a href="mailto:rishabhjain1175@gmail.com" aria-label="Email">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"><path d="M20 4H4C2.897 4 2 4.897 2 6v12c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zM5.797 7.009l6.203 4.63 6.203-4.63H5.797zM4 18V8.173l7.667 5.72a1 1 0 001.333 0L20 8.175V18H4z"/></svg>
+    </a>
+    <a href="https://linkedin.com/in/rishabh-jain2005" target="_blank" aria-label="LinkedIn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"><path d="M20.447 20.452H17.21v-5.569c0-1.327-.027-3.036-1.847-3.036-1.848 0-2.132 1.44-2.132 2.929v5.676H9.08V9h3.104v1.561h.043c.433-.82 1.493-1.683 3.072-1.683 3.288 0 3.895 2.164 3.895 4.974v6.6zM5.337 7.433c-1 0-1.81-.81-1.81-1.81 0-1 .81-1.807 1.81-1.807 1 0 1.81.806 1.81 1.807 0 1-.81 1.81-1.81 1.81zM6.719 20.452H3.956V9h2.763v11.452z"/></svg>
+    </a>
+    <a href="https://instagram.com/rishh.hehe" target="_blank" aria-label="Instagram">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"><path d="M7.75 2C4.678 2 2 4.678 2 7.75v8.5C2 19.322 4.678 22 7.75 22h8.5C19.322 22 22 19.322 22 16.25v-8.5C22 4.678 19.322 2 16.25 2h-8.5zM12 7a5 5 0 110 10 5 5 0 010-10zm6.406-1.344a1.156 1.156 0 11-2.312 0 1.156 1.156 0 012.312 0zM12 15.5a3.5 3.5 0 100-7 3.5 3.5 0 000 7z"/></svg>
+    </a>
+    <a href="https://github.com/Rishh2005" target="_blank" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"><path d="M12 .297C5.373.297 0 5.67 0 12c0 5.303 3.438 9.8 8.205 11.387.6.111.82-.258.82-.577 0-.284-.01-1.04-.015-2.04-3.338.725-4.042-1.416-4.042-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.206.084 1.84 1.237 1.84 1.237 1.07 1.834 2.81 1.305 3.495.998.107-.775.417-1.305.761-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.469-2.381 1.236-3.221-.121-.303-.536-1.523.115-3.176 0 0 1.005-.322 3.3 1.23.957-.266 1.977-.399 2.997-.404 1.02.005 2.041.138 3 .404 2.28-1.552 3.282-1.23 3.282-1.23.655 1.653.24 2.874.12 3.176.77.84 1.23 1.911 1.23 3.221 0 4.61-2.805 5.625-5.475 5.92.43.37.82 1.103.82 2.223 0 1.606-.015 2.896-.015 3.287 0 .318.22.694.825.576C20.565 21.798 24 17.3 24 11.999 24 5.67 18.627.297 12 .297z"/></svg>
+    </a>
+  </div>
+</section>
 
-        <div class="motivational-quote floating">
-            "Turning caffeine into code and dreams into algorithms! ☕️→💻"
-        </div>
-
-        <div class="section">
-            <h2>Education</h2>
-            <h3>TEERTHANKAR MAHAVEER UNIVERSITY</h3>
-            <p>B.Tech in Artificial Intelligence, Machine Learning and Deep Learning</p>
-            <p>Aug 2023 - Aug 2027</p>
-            <p>Delhi Road, NH9, Moradabad, Uttar Pradesh 244001</p>
-            <p>GPA: 7.5</p>
-            <div class="motivational-quote">
-                "Each semester is a new opportunity to level up! 🎮"
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-item popup">
-                    <h4>Programming Languages</h4>
-                    <p>C++, Python, Java, SQL, C</p>
-                </div>
-                <div class="skill-item popup">
-                    <h4>Libraries/Frameworks</h4>
-                    <p>Django, Flask, React.js, Javascript, Express.js, Fast API</p>
-                </div>
-                <div class="skill-item popup">
-                    <h4>Tools / Platforms</h4>
-                    <p>Git, VS Code</p>
-                </div>
-                <div class="skill-item popup">
-                    <h4>Databases</h4>
-                    <p>Oracle, MySQL, SQL, MongoDB</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="motivational-quote floating">
-            "Every line of code is a step toward mastery! 🎯"
-        </div>
-
-        <div class="section">
-            <h2>Certifications & Achievements</h2>
-            <ul>
-                <li>Accenture North America - Project Management Job Simulation</li>
-                <li>Goldman Sachs - Software Engineering Job Simulation</li>
-                <li>Artificial Intelligence Fundamentals - IBM</li>
-                <li>Career Essentials in Generative AI by Microsoft and LinkedIn</li>
-            </ul>
-            <div class="motivational-quote">
-                "Collecting certificates and building dreams, one achievement at a time! 🏆"
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>Leadership & Experience</h2>
-            <p>• Team Leader - Smart India Hackathon</p>
-            <p>• Team Leader - EY Techathon</p>
-            <p>• Currently working on TBO Hackathon</p>
-            <div class="motivational-quote">
-                "Leading with code, inspiring with innovation! 🚀"
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>Connect With Me</h2>
-            <div class="section">
-               
-                <div style="display: flex; justify-content: center; margin: 2rem 0;">
-                    <div class="card">
-                        <div class="background">
-                        </div>
-                        <div class="logo">
-                            Socials
-                        </div>
-                        <a href="https://www.instagram.com/rishh.hehe/"><div class="box box1"><span class="icon"><svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg" class="svg">
-                                <path d="M 9.9980469 3 C 6.1390469 3 3 6.1419531 3 10.001953 L 3 20.001953 C 3 23.860953 6.1419531 27 10.001953 27 L 20.001953 27 C 23.860953 27 27 23.858047 27 19.998047 L 27 9.9980469 C 27 6.1390469 23.858047 3 19.998047 3 L 9.9980469 3 z M 22 7 C 22.552 7 23 7.448 23 8 C 23 8.552 22.552 9 22 9 C 21.448 9 21 8.552 21 8 C 21 7.448 21.448 7 22 7 z M 15 9 C 18.309 9 21 11.691 21 15 C 21 18.309 18.309 21 15 21 C 11.691 21 9 18.309 9 15 C 9 11.691 11.691 9 15 9 z M 15 11 A 4 4 0 0 0 11 15 A 4 4 0 0 0 15 19 A 4 4 0 0 0 19 15 A 4 4 0 0 0 15 11 z" />
-                            </svg></span></div></a>
-                        <a href="https://www.linkedin.com/in/rishabh-jain2005/"><div class="box box2"> <span class="icon">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="svg">
-                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                            </svg>
-                        </span></div></a>
-                        <a href="https://github.com/Rishh2005"><div class="box box3"><span class="icon">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="svg">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                        </span></div></a>
-                        <div class="box box4"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <style>
-            .card {
-              position: relative;
-              width: 100%;
-              height: 150px;
-              background: lightgrey;
-              border-radius: 20px;
-              overflow: hidden;
-              box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-              transition: all 1s ease-in-out;
-              border: 2px solid rgb(255, 255, 255);
-              max-width: 800px;
-            }
-            
-            .background {
-              position: absolute;
-              inset: 0;
-              background-color: #4158D0;
-              background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
-            }
-            
-            .logo {
-              position: absolute;
-              right: 50%;
-              bottom: 50%;
-              transform: translate(50%, 50%);
-              transition: all 0.4s ease-in-out;
-              font-size: 2em;
-              font-weight: 600;
-              color: #ffffff;
-              letter-spacing: 3px;
-            }
-            
-            .icon {
-              display: inline-block;
-              width: 30px;
-              height: 30px;
-            }
-            
-            .icon .svg {
-              fill: rgba(255, 255, 255, 0.797);
-              width: 100%;
-              transition: all 0.5s ease-in-out;
-            }
-            
-            .box {
-              position: absolute;
-              padding: 15px;
-              text-align: right;
-              background: rgba(255, 255, 255, 0.389);
-              border-top: 2px solid rgb(255, 255, 255);
-              border-right: 1px solid white;
-              border-radius: 10% 13% 42% 0%/10% 12% 75% 0%;
-              box-shadow: rgba(100, 100, 111, 0.364) -7px 7px 29px 0px;
-              transform-origin: bottom left;
-              transition: all 1s ease-in-out;
-            }
-            
-            .box::before {
-              content: "";
-              position: absolute;
-              inset: 0;
-              border-radius: inherit;
-              opacity: 0;
-              transition: all 0.5s ease-in-out;
-            }
-            
-            .box:hover .svg {
-              fill: white;
-            }
-            
-            .box1 {
-              width: 70%;
-              height: 90%;
-              bottom: -90%;
-              left: -70%;
-            }
-            
-            .box1::before {
-              background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #ff53d4 60%, #62c2fe 90%);
-            }
-            
-            .box1:hover::before {
-              opacity: 1;
-            }
-            
-            .box1:hover .icon .svg {
-              filter: drop-shadow(0 0 5px white);
-            }
-            
-            .box2 {
-              width: 50%;
-              height: 90%;
-              bottom: -90%;
-              left: -50%;
-              transition-delay: 0.2s;
-            }
-            
-            .box2::before {
-              background: radial-gradient(circle at 30% 107%, #91e9ff 0%, #0077b5 90%);
-            }
-            
-            .box2:hover::before {
-              opacity: 1;
-            }
-            
-            .box2:hover .icon .svg {
-              filter: drop-shadow(0 0 5px white);
-            }
-            
-            .box3 {
-              width: 30%;
-              height: 90%;
-              bottom: -90%;
-              left: -30%;
-              transition-delay: 0.4s;
-            }
-            
-            .box3::before {
-              background: radial-gradient(circle at 30% 107%, #333 0%, #24292e 90%);
-            }
-            
-            .box3:hover::before {
-              opacity: 1;
-            }
-            
-            .box3:hover .icon .svg {
-              filter: drop-shadow(0 0 5px white);
-            }
-            
-            .box4 {
-              width: 10%;
-              height: 90%;
-              bottom: -90%;
-              left: -10%;
-              transition-delay: 0.6s;
-            }
-            
-            .card:hover {
-              transform: scale(1.02);
-            }
-            
-            .card:hover .box {
-              bottom: -1px;
-              left: -1px;
-            }
-            
-            .card:hover .logo {
-              transform: translate(270%, -52px);
-              letter-spacing: 0px;
-            }
-            </style>
-            </div>
-        </div>
+<section id="experience" data-aos="fade-up">
+  <h2 class="section-title">Education & Experience</h2>
+  <div class="timeline" role="list">
+    <div class="timeline-item left" role="listitem">
+      <div class="timeline-content">
+        <h3>B.Tech in Artificial Intelligence</h3>
+        <p>Teerthanker Mahaveer University, Delhi, India | Aug 2023 – May 2027 (Expected)</p>
+        <ul>
+          <li>Core coursework in Machine Learning, Data Science, NLP, and AI Ethics.</li>
+          <li>Built Sign Language Converter project for accessibility.</li>
+          <li>Participated in more than 15 national & international hackathons.</li>
+        </ul>
+      </div>
     </div>
+    <div class="timeline-item right" role="listitem">
+      <div class="timeline-content">
+        <h3>AI & Sustainability Intern</h3>
+        <p>1M1B (1 Million for 1 Billion) | Remote | Jul 2025 – Present</p>
+        <ul>
+          <li>Created CompostIQ, an AI-powered composting app delivering data-driven recommendations and educational resources.</li>
+          <li>Utilized Python (Flask) and scikit-learn predictive models.</li>
+          <li>Applied user feedback to enhance UI and model accuracy.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item left" role="listitem">
+      <div class="timeline-content">
+        <h3>Web Developer Intern</h3>
+        <p>BOOST STAR Experts | Remote | Jun 2025 – Jul 2025</p>
+        <ul>
+          <li>Designed and enhanced web projects using HTML, CSS, and JavaScript.</li>
+          <li>Collaborated remotely with agile teams for timely delivery.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script>
-        
-        // GSAP Animations
-        gsap.from(".name-3d", {
-            duration: 1,
-            scale: 0.8,
-            y: -30,
-            opacity: 0,
-            ease: "bounce.out"
-        });
+<section id="projects" data-aos="fade-up">
+  <h2 class="section-title">Projects</h2>
+  <ul style="max-width: 900px; margin: auto; font-size: 1rem; line-height: 1.6;">
+    <li>
+      <strong>Nirbhay App</strong>: Women's safety mobile app (React Native, Expo Go, Firebase/Supabase). Includes real-time location tracking, SOS alerts, user authentication, and accessibility features.
+    </li>
+    <li>
+      <strong>Health Connect</strong>: NLP chatbot for disease prediction, mental health games, and medicine info, part of EY Techathon winning solution.
+    </li>
+    <li>
+      <strong>Viaje-Plan</strong>: AI-powered travel assistant offering personalized trip planning, bookings, and guided recommendations from TBO VoyageHack.
+    </li>
+    <li>
+      <strong>Sign Language Understanding App</strong>: Converts sign language gestures to text and voice with custom ML models and user training UI.
+    </li>
+    <li>
+      <strong>Other Hackathon Ideas</strong>: EcoSmart Bin (IoT waste sorting), SafeDrive (drowsiness detection), ResumeRank AI (resume analysis & skill visualization).
+    </li>
+  </ul>
+</section>
 
-        gsap.from(".section", {
-            duration: 1,
-            y: 50,
-            opacity: 0,
-            stagger: 0.2,
-            ease: "power2.out"
-        });
+<section id="skills-tech" data-aos="fade-up">
+  <h2 class="section-title">Skills & Tech Stack</h2>
+  <div class="tech-scroll-container" aria-label="Scrollable tech stack and tools">
+    <!-- Programming Languages -->
+    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" /><div>Python</div></div>
+    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" /><div>JavaScript</div></div>
+    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" /><div>Java</div></div>
+    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C" /><div>C</div></div>
+    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" /><div>C++</div></div>
+    
+    <!-- Frontend -->
+    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" /><div>HTML5</div></div>
+    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3"/><div>CSS3</div></div>
+    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React Native" /><div>React Native</div></div>
+    
+    <!-- Backend & Frameworks -->
+    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="Flask" /><div>Flask</div></div>
+    
+    <!-- Database -->
+    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL" /><div>SQL</div></div>
+    
+    <!-- Tools & Platforms -->
+    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase" /><div>Firebase</div></div>
+    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" /><div>Git</div></div>
+    
+    <!-- AI/ML -->
+    <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" alt="scikit-learn" /><div>scikit-learn</div></div>
+    <div class="tech-item"><img src="https://cdn-icons-png.flaticon.com/512/1055/1055672.png" alt="MLOps" /><div>MLOps</div></div>
+  </div>
+</section>
 
-        gsap.from(".skill-item", {
-            duration: 0.8,
-            scale: 0.5,
-            opacity: 0,
-            stagger: 0.1,
-            ease: "back.out(1.7)"
-        });
+<section id="github-projects" data-aos="fade-up">
+  <h2 class="section-title">Featured GitHub Repositories</h2>
+  <ul class="repo-list" id="repo-list" aria-live="polite" aria-atomic="true" aria-relevant="additions">
+    <!-- JS will fill this -->
+  </ul>
+</section>
 
-        // Matrix-style code rain effect
-        function createCodeRain() {
-            const symbols = "01";
-            const container = document.querySelector('.code-rain');
-            
-            function createSymbol() {
-                const symbol = document.createElement('div');
-                symbol.className = 'code-symbol';
-                symbol.style.left = Math.random() * 100 + 'vw';
-                symbol.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-                container.appendChild(symbol);
+<section id="contact" data-aos="fade-up">
+  <h2 class="section-title">Contact Me</h2>
+  <form id="contact-form" aria-live="polite" novalidate>
+    <input type="text" name="name" placeholder="Your Name" required aria-required="true" />
+    <input type="email" name="email" placeholder="Your Email" required aria-required="true" />
+    <textarea name="message" rows="5" placeholder="Your Message" required aria-required="true"></textarea>
+    <button type="submit">Send Message</button>
+    <div id="form-response" role="alert" style="margin-top:10px; color: var(--primary); font-weight: 600;"></div>
+  </form>
+</section>
 
-                gsap.to(symbol, {
-                    duration: 2 + Math.random() * 3,
-                    y: '100vh',
-                    opacity: 0.5,
-                    ease: 'none',
-                    onComplete: () => {
-                        container.removeChild(symbol);
-                    }
-                });
-            }
+<footer aria-label="Site footer">
+  © 2025 Rishabh Jain | All Rights Reserved
+</footer>
 
-            setInterval(createSymbol, 100);
-        }
-
-        createCodeRain();
-
-        // Popup animation for sections on scroll
-        const sections = document.querySelectorAll('.section');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('popup');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        sections.forEach(section => observer.observe(section));
-    </script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init({ duration: 1000, once: true });
+particlesJS('particles-js', {
+  particles: {
+    number: { value: 80, density: { enable: true, value_area: 800 }},
+    color: { value: "#0073b1" }, shape: { type: "circle" },
+    opacity: { value: 0.5, anim: { enable: true, speed: 1, opacity_min: 0.2, sync: false } },
+    size: { value: 5, random: true, anim: { enable: true, speed: 5, size_min: 1, sync: false } },
+    line_linked: { enable: true, distance: 120, color: "#005288", opacity: 0.4, width: 1 },
+    move: { enable: true, speed: 2.5, direction: "none", random: true, straight: false, out_mode: "bounce", bounce: true }
+  },
+  interactivity: {
+    detect_on: "canvas",
+    events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: true, mode: "push" } },
+    modes: { grab: { distance: 140, line_linked: { opacity: 0.6 } }, push: { particles_nb: 4 } }
+  },
+  retina_detect: true
+});
+const form = document.getElementById('contact-form');
+const formResponse = document.getElementById('form-response');
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  formResponse.textContent = "Thank you for your message! I'll get back to you soon.";
+  form.reset();
+  setTimeout(() => { formResponse.textContent = ""; }, 6000);
+});
+// GitHub repos
+const githubRepos = [
+  {
+    name: 'CompostIQ',
+    description: 'Track and optimize composting processes for sustainability with data-driven insights and actionable recommendations.',
+    url: 'https://github.com/Rishh2005/CompostIQ',
+    language: 'HTML',
+    stars: 0,
+    updated_at: '2025-08-03T06:52:14Z'
+  },
+  {
+    name: 'WebResume',
+    description: 'Personal web resume project.',
+    url: 'https://github.com/Rishh2005/WebResume',
+    language: 'HTML',
+    stars: 1,
+    updated_at: '2025-07-04T13:14:34Z'
+  },
+  {
+    name: 'Cheating-Catcher',
+    description: 'Project about detecting cheating using algorithms.',
+    url: 'https://github.com/Rishh2005/Cheating-Catcher',
+    language: 'Python',
+    stars: 0,
+    updated_at: '2025-06-29T14:52:18Z'
+  },
+  {
+    name: 'Rishh2005',
+    description: 'Config files for my GitHub profile.',
+    url: 'https://github.com/Rishh2005/Rishh2005',
+    language: 'N/A',
+    stars: 1,
+    updated_at: '2025-06-28T14:54:43Z'
+  },
+  {
+    name: 'Nirbhay-App',
+    description: 'App solving real-life safety problems.',
+    url: 'https://github.com/Rishh2005/Nirbhay-App',
+    language: 'N/A',
+    stars: 1,
+    updated_at: '2025-06-24T15:39:01Z'
+  }
+];
+function formatDate(isoDate) {
+  const options = { year: 'numeric', month: 'short', day: 'numeric' };
+  return new Date(isoDate).toLocaleDateString(undefined, options);
+}
+function renderRepos() {
+  const ul = document.getElementById('repo-list');
+  ul.innerHTML = '';
+  githubRepos.forEach(repo => {
+    const li = document.createElement('li');
+    li.innerHTML = `
+      <a href="${repo.url}" target="_blank" rel="noopener" class="repo-name">${repo.name}</a>
+      <p class="repo-description">${repo.description || 'No description available.'}</p>
+      <div class="repo-meta">Language: ${repo.language} | ★ ${repo.stars} | Updated on ${formatDate(repo.updated_at)}</div>
+    `;
+    ul.appendChild(li);
+  });
+}
+renderRepos();
+const navLinks = document.querySelectorAll('nav ul li a');
+window.addEventListener('scroll', () => {
+  let fromTop = window.scrollY + 90;
+  navLinks.forEach(link => {
+    const section = document.querySelector(link.getAttribute('href'));
+    if (section && section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  });
+});
+</script>
 </body>
 </html>
